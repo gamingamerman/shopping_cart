@@ -1,5 +1,15 @@
 <?php include("includes/connection.php"); ?>
 <?php
+    session_start();
+
+    if (isset($_GET['id'])) {
+        $_SESSION['cart'][] = $_GET['id'];
+    }
+
+    if (isset($_SESSION['cart'])) {
+        $num_prod_cart = count($_SESSION['cart']);
+    }
+
     $sql = "SELECT * FROM products";
     if (isset($_GET["order"])) {
         $order = $_GET["order"];
@@ -32,7 +42,7 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    
+    <a href="cart.php">carrito (<?= $num_prod_cart?>)</a>
     <table>
         <thead>
             <th>id</th>
@@ -50,6 +60,7 @@
                 <td><?= $row["name"]?></td>
                 <td><?= $row["price"]?></td>
                 <td><?= $row["amount"]?></td>
+                <td><a href="index.php?id=<?= $row["id"]?>">Añadir</a></td>
             </tr>
         <?php
             }

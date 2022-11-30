@@ -19,3 +19,11 @@ tr:nth-child(even) {
 th a {
     color: white;
 }
+
+td a {
+    border: 1px solid blue;
+    background-color: #EEEEFF;
+    padding: 2px;
+    text-decoration: none;
+    margin: 2px;
+}
